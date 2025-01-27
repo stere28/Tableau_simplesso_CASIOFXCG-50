@@ -10,6 +10,15 @@ class Fraction:
             scale = 10 ** decimals
             return int(value * scale), scale
 
+        if isinstance(numerator, str):
+            if '/' in numerator:
+                parts = numerator.split('/')
+                numerator = int(parts[0])
+                denominator = int(parts[1])
+            else:
+                numerator = int(numerator)
+                denominator = 1
+
         if isinstance(numerator, float):
             numerator, denom_scale = float_to_fraction(numerator)
             denominator *= denom_scale
@@ -138,7 +147,7 @@ A = [[0 for _ in range(N)] for _ in range(M)]
 
 for i in range(M):
     for j in range(N):
-        A[i][j] = Fraction(float(input("T"+ str(i)+str(j)+": ")))
+        A[i][j] = Fraction(input("T"+ str(i+1)+str(j+1)+": "))
 
 ottimo = False
 illimitato = False
